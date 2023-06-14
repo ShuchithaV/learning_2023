@@ -1,0 +1,30 @@
+#include<stdio.h> 
+int largest(int, int);
+int main() {
+ int a, b; 
+printf("Enter 2 integer numbers\n"); 
+scanf("%d%d", &a, &b);  
+largest(a, b);
+printf("largest of %d and %d is %d\n", a, b, largest(a, b));
+return 0; 
+} 
+ int largest(int x, int y) { 
+return( x>y?x:y ); 
+}
+
+#include<stdio.h> 
+int largest(int, int);
+int main() {
+ int a, b; 
+printf("Enter 2 integer numbers\n"); 
+scanf("%d%d", &a, &b);  
+largest(a, b);
+printf("largest of %d and %d is %d\n", a, b, largest(a, b));
+return 0; 
+} 
+ int largest(int x, int y) { 
+if(x>y)
+return x;
+else 
+return y;
+}

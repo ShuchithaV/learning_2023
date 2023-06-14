@@ -1,0 +1,21 @@
+#include <stdio.h> 
+#include <string.h> 
+int main() { 
+int rl,phy,math,ca,total; 
+float per; 
+char nm[20],div[10]; 
+printf("Enter the Roll Number of the student :"); 
+scanf("%d",&rl); 
+printf("Enter the Name of the Student :"); 
+scanf("%s",nm);
+printf("Enter the marks of Physics, Math and Chemistry: "); 
+scanf("%d %d %d",&phy,&math,&ca); 
+total = phy+math+ca; 
+per = total/3.0; 
+if (per>=36)	
+strcpy(div,"Pass"); 	
+ else 		
+ strcpy(div,"Fail"); 
+ printf("\nRoll No : %d\nName of Student : %s\n",rl,nm);
+ printf("Marks in Physics : %d\nMarks in Math : %d\nMarks in Chemistry : %d\n",phy,math,ca); 
+ printf("Total Marks = %d\nPercentage = %5.2f\nResult = %s\n",total,per,div); }
