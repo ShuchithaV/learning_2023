@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int setBit(int n)
+
+{
+int k=1;
+return (n | (1 << (k - 1)));
+
+}
+
+int clearBit(int n)
+
+{
+int k=32;
+return (n & (~(1 << (k - 1))));
+
+}
+
+int toggleBit(int n)
+
+{
+int k=16;
+return (n ^ (1 << (k - 1)));
+
+}
+
+int main()
+
+{
+
+int n ;
+printf("Ënter the integer\n");
+scanf("%d",&n);
+
+
+
+printf("%d with 1-st bit Set: %d\n",n, setBit(n));
+printf("%d with 32-st bit Cleared: %d\n",n, clearBit(n));
+
+printf("%d with 16-th bit Toggled: %d\n",n,toggleBit(n));
+
+return 0;
+
+}
