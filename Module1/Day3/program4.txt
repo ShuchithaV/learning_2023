@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define Max(a,b) (a>b?a:b)
+#define Min(a,b) (a>b?b:a)
+
+void findLargestSmallest(int num)
+{
+int largestDigit = 0;
+int smallestDigit = 9;
+int digit;
+while(num){
+digit = num%10;
+largestDigit = Max(digit, largestDigit);
+smallestDigit = Min(digit, smallestDigit);
+num = num/10;
+}
+printf("Largest Digit: %d\n", largestDigit);
+printf("Smallest Digit: %d\n", smallestDigit);
+}
+
+
+int main()
+{
+    int n,i,num;
+    printf("Enter the value of n:\n");
+    scanf("%d",&n);
+    printf("Enter the numbers\n");
+    for(i=0;i<n;i++){
+        scanf("%d",&num);
+        findLargestSmallest(num);
+    }
+
+return 0;
+}
