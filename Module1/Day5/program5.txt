@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+typedef struct {
+    int f1;
+    char f2;
+    float f3;
+} Structure;
+
+void swapFields(Structure* struct1, Structure* struct2) {
+    Structure temp = *struct1;
+    *struct1 = *struct2;
+    *struct2 = temp;
+}
+
+int main() {
+    Structure struct1, struct2;
+
+    struct1.f1 = 10;
+    struct1.f2 = 'A';
+    struct1.f3 = 3.14;
+
+    struct2.f1 = 20;
+    struct2.f2 = 'B';
+    struct2.f3 = 6.28;
+
+    printf("Before swapping:\n");
+    printf("struct1: f1 = %d, f2 = %c, f3 = %.2f\n", struct1.f1, struct1.f2, struct1.f3);
+    printf("struct2: f1 = %d, f2 = %c, f3 = %.2f\n", struct2.f1, struct2.f2, struct2.f3);
+
+    swapFields(&struct1, &struct2);
+
+    printf("\nAfter swapping:\n");
+    printf("struct1: f1 = %d, f2 = %c, f3 = %.2f\n", struct1.f1, struct1.f2, struct1.f3);
+    printf("struct2: f1 = %d, f2 = %c, f3 = %.2f\n", struct2.f1, struct2.f2, struct2.f3);
+
+    return 0;
+}

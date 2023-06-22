@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+struct Box {
+    double l;
+    double w;
+    double h;
+};
+
+double calculateVolume(struct Box* box) {
+    return box->l * box->w * box->h;
+}
+
+double calculateSurfaceArea(struct Box* box) {
+    double l = box->l;
+    double w = box->w;
+    double h = box->h;
+
+    return 2 * (l * w + l * h + w * h);
+}
+
+int main() {
+    struct Box myBox;
+    myBox.l = 5.0;
+    myBox.w = 3.0;
+    myBox.h = 4.0;
+  
+    double volume = (*(&myBox)).l * (*(&myBox)).w * (*(&myBox)).h;
+    printf("Volume using asterisk operator: %.2f\n", volume);
+    
+    double surfaceArea = 2 * ((*(&myBox)).l * (*(&myBox)).w + (*(&myBox)).l * (*(&myBox)).h + (*(&myBox)).w * (*(&myBox)).h);
+    printf("Surface area using asterisk operator: %.2f\n", surfaceArea);
+   
+    double volumeArrow = myBox->l * myBox->w * myBox->h;
+    printf("Volume using arrow operator: %.2f\n", volumeArrow);
+
+    double surfaceAreaArrow = 2 * (myBox->l * myBox->w + myBox->l * myBox->h + myBox->w * myBox->h);
+    printf("Surface area using arrow operator: %.2f\n", surfaceAreaArrow);
+
+    return 0;
+}
