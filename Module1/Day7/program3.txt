@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ENTRIES 100
+#define MAX_LINE_LENGTH 256
+
+typedef struct {
+    int entryNo;
+    char sensorNo[3];
+    float temperature;
+    int humidity;
+    int light;
+    char timestamp[9];
+} LogEntry;
+
+LogEntry logEntries[MAX_ENTRIES];
+int numEntries = 0;
+
+void parseCSVFile(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Failed to open the file.\n");
+        return;
+    }
+
+    char line[MAX_LINE_LENGTH];
+
+    while (fgets(line, sizeof(line), file) != NULL) {
+        char *token;
+
+        token = strtok(line, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+
+        logEntries[numEntries].entryNo = atoi(token);
+
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+        strcpy(logEntries[numEntries].sensorNo, token);
+
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+        logEntries[numEntries].temperature = atof(token);
+
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+        logEntries[numEntries].humidity = atoi(token);
+
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+        logEntries[numEntries].light = atoi(token);
+
+        token = strtok(NULL, ",");
+        if (token == NULL) {
+            printf("Error reading CSV file.\n");
+            break;
+        }
+        strcpy(logEntries[numEntries].timestamp, token);
+
+        numEntries++;
+    }
+
+    fclose(file);
+}
+
+void displayLogEntries() {
+    printf("EntryNo\tSensorNo\tTemperature\tHumidity\tLight\tTimestamp\n");
+    printf("----------------------------------------------------------\n");
+
+    for (int i = 0; i < numEntries; i++) {
+        printf("%d\t%s\t\t%.1f\t\t%d\t\t%d\t%s\n", logEntries[i].entryNo,
+               logEntries[i].sensorNo, logEntries[i].temperature, logEntries[i].humidity,
+               logEntries[i].light, logEntries[i].timestamp);
+    }
+}
+
+int main() {
+    parseCSVFile("data.csv");
+    displayLogEntries();
+
+    return 0;
+}
